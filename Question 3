@@ -1,0 +1,53 @@
+#A.)
+def add(a, b):
+    return a + b
+
+print (add(3,4))
+
+#B.)
+def sub(a, b):
+    sub = a - b
+    if sub <= 0:
+        return("0")
+
+
+    elif sub >= 0:
+        return sub
+
+print (sub(6,7))
+
+#C.)
+def mult(a, b):
+    mult = a * b
+
+    if mult <= 0:
+        return("0")
+
+    elif mult >= 0:
+        return a * b
+
+print (mult(1,-4))
+
+#D.)
+def div (a, b):
+    if b == 0:
+        return ("1000")
+
+    else:
+        answer= a / b
+        return answer
+
+print (div(3,0))
+
+#E.) Calculator
+#This function accepts a string “eq” of the form ‘a [op] b’ where ‘[op]’ will be either +, -, * or /. The function
+#parses “eq” to obtain a, b, and [op]. If the operation [op] is a + then return sum(a,b), if it is - then return
+#sub(a,b), if it is * then return mult(a,b), and finally if [op] is / then return div(a,b). This calculator is expected
+#to follow all the same rules as a), b), c), and d).
+#Hint: Parsing the string can be made much easier using the split method on strings. For example:
+
+def simple_calc (eq):
+    simple_calc.split
+
+
+    print (simple_calc("1+2"))
