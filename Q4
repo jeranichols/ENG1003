@@ -1,0 +1,25 @@
+#A.)
+
+def word_count(speech):
+    words = speech.split()
+    return len(words)
+
+print(word_count("This is a fake speech that I am writing, it is a very long long long speech okay I am done"))
+
+#B.)
+def vowel_count(speech):
+    words = speech.split('a,e,i,o,u')
+    return words.count('a')
+
+print(word_count("This is a fake speech that I am writing, it is a very long long long speech okay I am done"))
+
+def vowel_words(speech):
+    count = 0
+
+    for word in speech.split():
+        if word[0] in "aeiou":
+            count += 1
+
+    return count
+
+print (vowel_words("apple banana orange 
