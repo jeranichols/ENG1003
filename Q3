@@ -1,0 +1,70 @@
+#A.)
+def add(a, b):
+    return a + b
+
+print (add(3,4))
+
+#B.)
+def sub(a, b):
+    sub = a - b
+    if sub <= 0:
+        return(0)
+
+
+    elif sub >= 0:
+        return sub
+
+print (sub(6,7))
+
+#C.)
+def mult(a, b):
+    mult = a * b
+
+    if mult <= 0:
+        return(0)
+
+    elif mult >= 0:
+        return a * b
+
+print (mult(1,-4))
+
+#D.)
+def div (a, b):
+    if b == 0:
+        return ("1000")
+
+    else:
+        answer= a / b
+        return answer
+
+print (div(3,0))
+
+#E.) Calculator
+def simple_calc (eq):
+
+    split_parts = eq.split()
+
+    a = float(split_parts[0])
+
+    op = (split_parts[1])
+
+    b = float(split_parts [2])
+
+    if op == "+":
+        return add(a,b)
+
+    elif op == "-":
+        return sub(a,b)
+
+    elif op == "*":
+        return mult(a,b)
+
+    if op == "/":
+        return div(a,b)
+
+print (simple_calc("3 * 5"))
+
+
+
+
+
