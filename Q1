@@ -1,0 +1,35 @@
+#Question 1
+#A.)
+def straight_line(c1, c2, x):
+    y = c1 * x + c2
+    return y
+
+print(straight_line(1, 2, 3))
+
+#B.)
+def parabolic_line(c1, c2, c3, x):
+    y = c1 * x**2 + c2 * x + c3
+    return y
+
+print(parabolic_line(1, 2, 3, 5))
+
+#C.)
+def cubic_line(c1, c2, c3, c4, x):
+    y = c1 * x ** 3 + c2 * x ** 2 + c3 * x + c4
+    return y
+
+print (cubic_line( 1, 2, 3, 4, 5))
+
+#D.)
+def general_polynomial(coeffs, x):
+    total = 0
+    n = len(coeffs)
+
+    for i in range(n):
+        total += coeffs[i] * x ** i
+    return total
+
+print (general_polynomial([1,2,3,4,5], 3))
+
+
+
