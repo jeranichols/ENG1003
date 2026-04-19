@@ -1,0 +1,251 @@
+#a.)
+#i.)
+import integration as integ
+import math as math
+
+def trapezoidal_vs_polynomial():
+    def f(x):
+        return 7 + 14 * x ** 6
+
+    a = 0
+    b = 1
+    exact = 9
+
+    num = integ.trapezoidal (f, a, b, n=100)
+
+    return exact - num
+
+
+
+
+def simpson_vs_polynomial():
+    def f(x):
+        return 7 + 14 * x ** 6
+
+    a = 0
+    b = 1
+    exact = 9
+
+    num = integ.simpson(f, a, b, n=100)
+    return exact - num
+
+#ii.)
+def trapezoidal_vs_hyperbola():
+    def f(x):
+        return 2 / 1 + x ** 2
+
+    a = 0
+    b = 1
+    exact = math.pi / 2
+
+    num = integ.trapezoidal (f, a, b, n=100)
+    return exact - num
+
+
+
+
+def simpson_vs_hyperbola():
+    def f(x):
+        return 2 / 1 + x ** 2
+
+    a = 0
+    b = 1
+    exact = math.pi / 2
+
+    num = integ.simpson(f, a, b, n=100)
+    return exact - num
+
+#iii.)
+
+def trapezoidal_vs_sqrt ():
+    def f(x):
+        return math.sqrt(x - x ** 2)
+
+    first_part = (3 * math.sqrt(3) / 4)
+    second_part = 24
+
+    a = 0
+    b = 1 / 4
+    exact = math.pi
+
+    num = integ.trapezoidal(f, a, b, n=100)
+
+    full_equation = first_part + second_part * num
+    return exact - full_equation
+
+
+
+
+def simpson_vs_sqrt():
+    def f(x):
+        return math.sqrt(x - x ** 2)
+
+    first_part = 3 * math.sqrt(3) / 4
+    second_part = 24
+    a = 0
+    b = 1 / 4
+    exact = math.pi
+
+    num = integ.simpson(f, a, b, n=100)
+
+    full_equation = first_part + second_part * num
+    return exact - full_equation
+
+#b.)
+#i.)
+def numerical_std_normal(a, b):
+    def f(x):
+        return math.e ** (-x ** 2 / 2)
+
+    part_1 = 1 / math.sqrt(2 * math.pi)
+
+    int = integ.simpson(f, a, b, n=1000)
+
+    result = part_1 * int
+
+    return result
+
+#ii.)
+def random_std_normal(a, b):
+    np.random.seed(1)
+
+    x = np.random.normal(a, b, 10 ** 6)
+
+#???????????????????????????
+
+
+Q2.)
+#a.)
+import pandas as pd
+import matplotlib.pyplot as plt
+import math
+import numpy as np
+import rootfinding as rf
+
+
+def plot_water_tank_data(data_file_path):
+    fig, ax = plt.subplots()
+
+    csv_data = pd.read_csv(data_file_path)
+
+    height = csv_data['Height']
+
+    velocity = csv_data['Velocity']
+
+
+    ax.plot(height, velocity)
+    ax.set_title('Water Velocity vs Water Height in Tank')
+    ax.set_xlabel('Height [M]')
+    ax.set_ylabel('Velocity[m/s]')
+
+    return fig,ax
+
+#b.)
+def water_height_required(velocity):
+
+    g = 9.81
+    L = 5 #length of pipe in meters
+    v = velocity
+
+    def f(h):
+        equation = math.sqrt(2 * g * h) * np.tanh(2 / L * math.sqrt(2 * g * h))
+        return equation - v
+
+
+    height = rf.secant(f, 0.5, 3, 200)
+    return height
+
+3.)
+#Q3.)
+import numpy as np
+from matplotlib import pyplot as plt
+
+
+#a.)
+def load_running_data(file_path):
+    try:
+        with open(file_path, 'r') as f:
+            file_lines = f.read().split('\n')
+            file_lines = [line for line in file_lines if line != '']
+            return file_lines
+    except FileNotFoundError:
+        return []
+
+
+
+#b.)
+def parse_lines(file_lines):
+
+    velocity_list = []
+    time_list = []
+
+    for line in file_lines:
+        value = line.split(',')
+
+        velocity_list.append(float(value[0]))
+        time_list.append(float(value[1]))
+
+
+    velocity = np.array(velocity_list)
+    t = np.array(time_list)
+
+    return t, velocity
+
+#c.)
+def max_velocity(velocities):
+
+    max_v = np.max(velocities)
+
+    if np.any ((velocities) < 0):
+        raise ValueError("The runner should never run backwards")
+
+    else:
+        return max_v
+
+
+#d.)
+def min_velocity(velocities):
+    min_v = np.min(velocities)
+
+    if np.any ((velocities) < 0):
+        raise ValueError("The runner should never run backwards")
+    else:
+        return min_v
+
+#c.)
+def average_velocity(velocities):
+    average_v = np.mean(velocities)
+    if np.any ((velocities) < 0):
+        raise ValueError("The runner should never run backwards")
+    else:
+        return average_v
+
+
+#d.)
+#def velocity_interp(time,velocity,time_to_interpolate):
+
+
+
+
+
+
+#h.)
+def plot_run(time,velocity):
+    fig, ax = plt.subplots()
+    ax.plot(time,velocity)
+
+    time = np.array(time)
+    velocity = np.array(velocity)
+
+
+    ax.plot(time, velocity)
+    ax.set_title('Run Velocity vs Time')
+    ax.set_xlabel('Time [s]')
+    ax.set_ylabel('Velocity [m/s]')
+    ax.grid(True)
+    ax.axis([0, 1600, 0.0, 11.0])
+
+    return fig, ax
+
+
+
